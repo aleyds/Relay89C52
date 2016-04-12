@@ -299,7 +299,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>include</IncludePath>
+              <IncludePath>include;include\module\wdg</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -365,6 +365,16 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main\main.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>module</GroupName>
+          <Files>
+            <File>
+              <FileName>wdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main\module\wdg\wdg.c</FilePath>
             </File>
           </Files>
         </Group>
