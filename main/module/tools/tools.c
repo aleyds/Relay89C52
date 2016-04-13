@@ -1,4 +1,5 @@
 #include"base_type.h"
+#include "platform.h"
 #include "tools.h"
 
 void wy_delay(H_U32 ms)
@@ -12,5 +13,10 @@ void wy_delay(H_U32 ms)
 			
 		}
 	}
+}
+
+void wy_SysReset(void)
+{
+	ISP_CONTR = 0x20;
 }
 

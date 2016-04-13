@@ -381,6 +381,21 @@
               <FileType>1</FileType>
               <FilePath>.\main\module\wdg\wdg.c</FilePath>
             </File>
+            <File>
+              <FileName>tools.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main\module\tools\tools.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main\module\led\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main\module\timer\timer.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
