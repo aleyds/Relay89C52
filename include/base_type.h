@@ -8,7 +8,7 @@ typedef unsigned char H_U8;
 typedef int H_S32;
 typedef short H_S16;
 typedef char H_S8;
-typedef bool H_BOOL;
+typedef int H_BOOL;
 
 
 #define H_SUCCESS			(0)

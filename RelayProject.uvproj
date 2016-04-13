@@ -299,7 +299,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>include;include\module\wdg</IncludePath>
+              <IncludePath>include;include\module</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -365,6 +365,11 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>interrupt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main\interrupt.c</FilePath>
             </File>
           </Files>
         </Group>
