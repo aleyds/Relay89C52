@@ -1,6 +1,7 @@
 #ifndef __BASE_TYPE_H__
 #define __BASE_TYPE_H__
 #include <stdio.h>
+#include "platform.h"
 
 typedef unsigned int H_U32;
 typedef unsigned short H_U16;
