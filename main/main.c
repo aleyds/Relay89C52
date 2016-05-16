@@ -31,7 +31,7 @@ static void _Timer0Callback(void)
 	}
 }
 
-
+#if 0
 //Project running Main
 void main()
 {
@@ -62,12 +62,12 @@ void main()
 	}
 }
 
-/*
+#else
 //Test Main function
 void main()
 {
 	//wy_wdg_start();
-	wy_led_display(_LED_0, H_TRUE);
+	wy_led_display(_LED_1, H_TRUE);
 	//wy_led_display(_LED_1, H_TRUE);
 	//wy_led_display(_LED_2, H_TRUE);
 	//_InterruptOpen();
@@ -76,12 +76,12 @@ void main()
 	{
 		wy_delay(1000);
 		//Led1=1;
-		wy_led_display(_LED_0, H_FAUSE);
+		wy_led_display(_LED_1, H_FAUSE);
 		wy_delay(1000);
 		wy_SysReset();
 		//wy_led_display(_LED_1, H_FAUSE);
 		//wy_led_display(_LED_2, H_FAUSE);
 	}
 }
-*/
+#endif
 
