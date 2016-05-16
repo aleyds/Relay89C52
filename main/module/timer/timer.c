@@ -6,6 +6,7 @@
 struct TimerSt{
 	H_U16 init;
 	H_U16 counter;
+	TimerCallback call;
 };
 
 typedef struct TimerManage{
@@ -29,7 +30,10 @@ void wy_timer0(void) interrupt 1
 	if(g_timer_manage.timer0.counter == 0)
 	{
 		g_timer_manage.timer0.counter = g_timer_manage.timer0.init;
-		_Timer0Callback();
+		if(g_timer_manage.timer0.call != H_NULL)
+		{
+			g_timer_manage.timer0.call();
+		}
 	}
 	g_timer_manage.timer0.counter--;
 }
@@ -44,7 +48,7 @@ void wy_timer2(void) interrupt 5
 	//TODO:定时器T2中断
 }
 
-static void _Timer0Open(H_U32 ms)
+static void _Timer0Open(H_U32 ms, TimerCallback call)
 {
 	TR0=0;//先关闭定时器0
 	TMOD=0x00;//定时器工作在方式0
@@ -54,6 +58,7 @@ static void _Timer0Open(H_U32 ms)
 	TR0=1;//开启定时器0
 	g_timer_manage.timer0.init = ms/5;
 	g_timer_manage.timer0.counter = g_timer_manage.timer0.init;
+	g_timer_manage.timer0.call = call;
 }
 
 static void _Timer1Open(H_U32 ms)
@@ -82,12 +87,12 @@ static void _Timer2Close(void)
 }
 
 
-H_U32 wy_timer_open(_TimerType_e type, H_U32 time)
+H_U32 wy_timer_open(_TimerType_e type, H_U32 time, TimerCallback call)
 {
 	switch(type)
 	{
 		case _TIMER0:
-			_Timer0Open(time);
+			_Timer0Open(time,call);
 			break;
 		case _TIMER1:
 			_Timer1Open(time);
