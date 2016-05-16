@@ -24,6 +24,9 @@ sbit KEYBOARD_T12=P2^3; //按键12
 sbit KEYBOARD_T13=P2^2; //按键13
 sbit KEYBOARD_T14=P2^1; //按键14
 sbit KEYBOARD_T15=P2^0; //按键15
+
+sbit START_VDET=P0^4; //开始检测传感器控制信号
+sbit SONSER_VDET=P0^5;//传感器检测端口，低电平说明有电机转动
 #endif
 
 #endif

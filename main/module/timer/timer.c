@@ -15,12 +15,14 @@ typedef struct TimerManage{
 
 static _TimerManage_t g_timer_manage;
 
+/*
 static void _Timer0Callback(void)
 {
 	wy_led_display(_LED_0, H_TRUE);
 	wy_delay(500);
 	wy_led_display(_LED_0, H_FAUSE);
 }
+*/
 
 void wy_timer0(void) interrupt 1
 {

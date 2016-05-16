@@ -6,7 +6,7 @@ typedef enum{
 	_TIMER2,
 }_TimerType_e;
 
-typedef void *(TimerCallback)(void);
+typedef void (*TimerCallback)(void);
 
 H_U32 wy_timer_open(_TimerType_e type, H_U32 time,TimerCallback call);
 H_U32 wy_timer_close(_TimerType_e type);
