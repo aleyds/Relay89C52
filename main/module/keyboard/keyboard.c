@@ -1,7 +1,43 @@
-
+#include "base_type.h"
 #include "keyboard.h"
 #include "platform.h"
 
+#define KEYVALUE_MASK		(0x1F) //P2口低五位
+
+H_U32 _KeyBoardTime(void)
+{
+	H_U8 KeyValue = 0;
+	H_U32 OutTime = 0;
+	
+	KeyValue = P2&KEYVALUE_MASK;
+	if(KeyValue&0x1)
+	{
+		OutTime += 100;
+	}
+	if((KeyValue&0x02))
+	{
+		OutTime += 200;
+	}
+	if(KeyValue&0x04)
+	{
+		OutTime += 300;
+	}
+	if(KeyValue&0x08)
+	{
+		OutTime += 400;
+	}
+	if(KeyValue&0x10)
+	{
+		OutTime += 500;
+	}
+	if(KeyValue&0x20)
+	{
+		OutTime += 600;
+	}
+	return ((OutTime == 0)?100:OutTime);
+}
+
+/*
 static KeyBoard_Type _KeyBoardScan(void)
 {
 	KeyBoard_Type _KeyType = _KEYBOARD_MAX;
@@ -55,4 +91,4 @@ static KeyBoard_Type _KeyBoardScan(void)
 	return _KeyType;
 }
 
-
+*/

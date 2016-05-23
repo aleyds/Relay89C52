@@ -18,7 +18,12 @@ void wy_External1(void) interrupt 2
 
 void wy_uart(void) interrupt 4
 {
-	//TODO:串口中断
+	//TODO:串口中断	   
+	if(RI) // 接收中断产生
+	{
+		//有串口数据接收 ,清除RI标志
+		RI = 0;
+	}
 }
 
 

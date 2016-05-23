@@ -28,18 +28,23 @@ static void _Timer0Callback(void)
 	if(SONSER_VDET&0x1)//传感器信号为高电平
 	{
 		//TODO:无电机转动，断开继电器停止向工控板供电
+		RELAY_CONTROL=0;
+		wy_led_display(_LED_1, H_TRUE);//继电器断开，指示灯开
 	}
 }
 
-#if 0
+#if 1
 //Project running Main
 void main()
 {
-	KeyBoard_Type _KeyType = _KEYBOARD_T1;
+	H_U32 CheckTime = 0;
+	H_U32 CurrentCheckTime = 0;
 	H_U32 TimerTime = 0;
 	//Step1:Interrupt Init 
 	_InterruptOpen();
 	//Step2:wait check click
+	wy_led_display(_LED_0,H_TRUE);//电源指示灯,绿色
+	wy_led_display(_LED_1, H_FAUSE);//继电器指示灯，关
 	while(1)
 	{
 		
@@ -49,12 +54,12 @@ void main()
 		}
 		if(g_StartSonser == 1)
 		{
-			_KeyType = _KeyBoardScan();
-			if(_KeyType != _KEYBOARD_MAX)
+			CheckTime = _KeyBoardTime();
+			if(CurrentCheckTime != CheckTime)
 			{
+				CurrentCheckTime = CheckTime;
 				wy_timer_close(_TIMER0);
-				TimerTime = 100*_KeyType + 100;
-				wy_timer_open(_TIMER0, TimerTime, _Timer0Callback);
+				wy_timer_open(_TIMER0, CheckTime, _Timer0Callback);
 			}
 		}
 		
@@ -72,13 +77,16 @@ void main()
 	//wy_led_display(_LED_2, H_TRUE);
 	//_InterruptOpen();
 	//wy_timer_open(_TIMER0,10000);
+	_LEDTest();
 	while(1)
 	{
-		wy_delay(1000);
+		
+		//wy_delay(1000);
+		
 		//Led1=1;
-		wy_led_display(_LED_1, H_FAUSE);
-		wy_delay(1000);
-		wy_SysReset();
+		//wy_led_display(_LED_1, H_FAUSE);
+		//wy_delay(1000);
+		//wy_SysReset();
 		//wy_led_display(_LED_1, H_FAUSE);
 		//wy_led_display(_LED_2, H_FAUSE);
 	}
