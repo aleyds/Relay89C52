@@ -48,9 +48,12 @@ void main()
 	while(1)
 	{
 		
-		if(START_VDET&0x1)//检测开始信号后开始检测传感器信号
+		if(!(START_VDET&0x1))//检测开始信号后开始检测传感器信号
 		{
 			g_StartSonser = 1;
+		}else
+		{
+			g_StartSonser = 0;
 		}
 		if(g_StartSonser == 1)
 		{

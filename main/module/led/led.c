@@ -3,7 +3,7 @@
 
 H_S32 wy_led_display(LedType_e type, H_BOOL on)
 {
-	H_U8 st = (on == 0)?1:0;
+	H_U8 st = (on == 0)?0:1;
 	switch(type)
 	{
 		case _LED_0:
