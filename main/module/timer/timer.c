@@ -26,8 +26,8 @@ static void _Timer0Callback(void)
 
 void wy_timer0(void) interrupt 1
 {
-	TH0=(8192-4607)/32; //设置定时器0初值 5ms
-	TL0=(8192-4607)%32;
+	TH0=(8192-6666)/32; //(8192-N)/32  N=t(us)/(12*1/晶振频率Hz) 设置定时器0初值 5ms
+	TL0=(8192-6666)%32;	//(8192-N)%32
 	//TODO:定时器T0中断
 	if(g_timer_manage.timer0.counter == 0)
 	{
@@ -35,6 +35,7 @@ void wy_timer0(void) interrupt 1
 		if(g_timer_manage.timer0.call != H_NULL)
 		{
 			g_timer_manage.timer0.call();
+		
 		}
 	}
 	g_timer_manage.timer0.counter--;
@@ -54,8 +55,8 @@ static void _Timer0Open(H_U32 ms, TimerCallback call)
 {
 	TR0=0;//先关闭定时器0
 	TMOD=0x00;//定时器工作在方式0
-	TH0=(8192-4607)/32; //设置定时器0初值 5ms
-	TL0=(8192-4607)%32;
+	TH0=(8192-6666)/32; //设置定时器0初值 5ms
+	TL0=(8192-6666)%32;
 	ET0=1;//开启定时器0中断
 	TR0=1;//开启定时器0
 	g_timer_manage.timer0.init = ms/5;

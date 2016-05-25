@@ -35,7 +35,7 @@ sbit KEYBOARD_T6=P2^5; //按键6
 
 sbit START_VDET=P0^4; //开始检测传感器控制信号
 sbit SONSER_VDET=P0^5;//传感器检测端口，低电平说明有电机转动
-sbit RELAY_CONTROL=P0^6;//电源开关
+sbit RELAY_CONTROL=P2^7;//电源开�
 #endif
 
 #endif

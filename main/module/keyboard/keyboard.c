@@ -10,27 +10,27 @@ H_U32 _KeyBoardTime(void)
 	H_U32 OutTime = 0;
 	
 	KeyValue = P2&KEYVALUE_MASK;
-	if(KeyValue&0x1)
+	if(!(KeyValue&0x1))
 	{
 		OutTime += 100;
 	}
-	if((KeyValue&0x02))
+	if(!(KeyValue&0x02))
 	{
 		OutTime += 200;
 	}
-	if(KeyValue&0x04)
+	if(!(KeyValue&0x04))
 	{
 		OutTime += 300;
 	}
-	if(KeyValue&0x08)
+	if(!(KeyValue&0x08))
 	{
 		OutTime += 400;
 	}
-	if(KeyValue&0x10)
+	if(!(KeyValue&0x10))
 	{
 		OutTime += 500;
 	}
-	if(KeyValue&0x20)
+	if(!(KeyValue&0x20))
 	{
 		OutTime += 600;
 	}
