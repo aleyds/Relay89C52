@@ -6,8 +6,8 @@
 #ifdef STC89C52
 sfr WDG_REGISTER=0xe1;//看门狗
 sfr ISP_CONTR=0xe7; //ISP/IAP功能及软件复位
-sbit DIS_LED0=P1^3; //LED GREEN  P1^3
-sbit DIS_LED1=P1^4; //LED RED	 P1^4
+sbit DIS_LED0=P1^6; //LED GREEN  P1^3
+sbit DIS_LED1=P1^7; //LED RED	 P1^4
 sbit DIS_LED2=P1^2;
 /*
 sbit KEYBOARD_T1=P1^0; //按键1
@@ -33,9 +33,9 @@ sbit KEYBOARD_T5=P2^4; //按键5
 sbit KEYBOARD_T6=P2^5; //按键6
 
 
-sbit START_VDET=P0^4; //开始检测传感器控制信号
-sbit SONSER_VDET=P0^5;//传感器检测端口，低电平说明有电机转动
-sbit RELAY_CONTROL=P2^7;//电源开�
+sbit START_VDET=P3^3; //开始检测传感器控制信号
+sbit SONSER_VDET=P1^5;//传感器检测端口，低电平说明有电机转动
+sbit RELAY_CONTROL=P3^4;//电源
 #endif
 
 #endif

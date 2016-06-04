@@ -25,7 +25,7 @@ static void _InterruptClose(void)
 
 static void _Timer0Callback(void)
 {
-	if(!(SONSER_VDET&0x1))//传感器信号为高电平
+	if((SONSER_VDET&0x1))//传感器信号为高电平
 	{
 		//TODO:无电机转动，断开继电器停止向工控板供电
 		RELAY_CONTROL=0;
@@ -46,16 +46,24 @@ void main()
 	//Step2:wait check click
 	wy_led_display(_LED_0,H_TRUE);//电源指示灯,绿色
 	wy_led_display(_LED_1, H_FAUSE);//继电器指示灯，关
-	RELAY_CONTROL=1;
+	//RELAY_CONTROL=1;
 	while(1)
 	{
-		//wy_delay(4000);
-	//	wy_led_display(_LED_0,H_TRUE);
-		//RELAY_CONTROL=0;
-		//wy_delay(4000);
+		
+		/*	
+		wy_delay(2000);
+		//wy_led_display(_LED_1, H_TRUE);
+		wy_led_display(_LED_0,H_TRUE);
 		//RELAY_CONTROL=1;
-	//	wy_led_display(_LED_0,H_FAUSE);
+
+		wy_delay(2000);
+		//wy_led_display(_LED_1, H_FAUSE);
+		wy_led_display(_LED_0,H_FAUSE);
+		//RELAY_CONTROL=0;
 		//continue;
+		*/
+			   
+
 		if(!(START_VDET&0x1))//检测开始信号后开始检测传感器信号
 		{
 			g_StartSonser = 1;
