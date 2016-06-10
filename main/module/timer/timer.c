@@ -3,8 +3,8 @@
 #include "led.h"
 #include "tools.h"
 
-#define TH0HIGHT		(0x1A)   //16MHz晶振  方式0 定时1ms
-#define TH0LOW			(0xCB)
+#define TH0HIGHT		(0xA4)   //16MHz晶振  方式0 定时1ms  1ACB    11.592MHz 方式0 定时1ms 1C3A
+#define TH0LOW			(0xA4)
 
 struct TimerSt{
 	H_U32 init;
@@ -29,30 +29,37 @@ static void _Timer0Callback(void)
 
 void wy_timer0(void) interrupt 1
 {
-	TH0 = TH0HIGHT; //(8192-N)/32  N=t(us)/(12*1/晶振频率Hz) 设置定时器0初值 5ms
-	TL0 = TH0LOW;	//(8192-N)%32
+	//TH0 = TH0HIGHT; //(8192-N)/32  N=t(us)/(12*1/晶振频率Hz) 设置定时器0初值 5ms
+	//TL0 = TH0LOW;	//(8192-N)%32
 	//TODO:定时器T0中断
-	if(g_timer_manage.timer0.counter == 0)
+	
+	if((g_timer_manage.timer0.counter == 0) || (g_timer_manage.timer0.counter > g_timer_manage.timer0.init))
 	{
 		g_timer_manage.timer0.counter = g_timer_manage.timer0.init;
 		if(g_timer_manage.timer0.call != H_NULL)
 		{
 			g_timer_manage.timer0.call();
-		
+			wy_timer_close(_TIMER0);
+		}else
+		{
+			
 		}
+	}else
+	{
+		g_timer_manage.timer0.counter--;
 	}
-	g_timer_manage.timer0.counter--;
+	
 }
 
 static void _Timer0Open(H_U32 ms, TimerCallback call)
 {
-	TR0=0;//先关闭定时器0
-	TMOD = 0x00;//定时器工作在方式0
+	//TR0=0;//先关闭定时器0
+	TMOD = 0x02;//定时器工作在方式0
 	TH0 = TH0HIGHT; //设置定时器0初值 5ms
 	TL0 = TH0LOW;
 	ET0=1;//开启定时器0中断
 	TR0=1;//开启定时器0
-	g_timer_manage.timer0.init = ms;
+	g_timer_manage.timer0.init = ms*10;
 	g_timer_manage.timer0.counter = g_timer_manage.timer0.init;
 	g_timer_manage.timer0.call = call;
 }

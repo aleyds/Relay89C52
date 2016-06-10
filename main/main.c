@@ -49,20 +49,13 @@ void main()
 	//RELAY_CONTROL=1;
 	while(1)
 	{
-		
-		/*	
-		wy_delay(2000);
-		//wy_led_display(_LED_1, H_TRUE);
-		wy_led_display(_LED_0,H_TRUE);
-		//RELAY_CONTROL=1;
-
-		wy_delay(2000);
-		//wy_led_display(_LED_1, H_FAUSE);
-		wy_led_display(_LED_0,H_FAUSE);
-		//RELAY_CONTROL=0;
-		//continue;
-		*/
-			   
+		/*
+		wy_delay(1000);
+		wy_led_display(_LED_1, H_TRUE);
+		wy_delay(1000);
+		wy_led_display(_LED_1, H_FAUSE);
+		continue;
+   */
 
 		if(!(START_VDET&0x1))//检测开始信号后开始检测传感器信号
 		{
