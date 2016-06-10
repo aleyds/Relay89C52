@@ -17,6 +17,7 @@ void wy_delay(H_U32 ms)
 
 void wy_SysReset(void)
 {
-	ISP_CONTR = 0x20;
+	PCON = PCON & 0xef;
+	ISP_CONTR = 0x60;
 }
 

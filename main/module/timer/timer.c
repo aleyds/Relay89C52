@@ -39,7 +39,7 @@ void wy_timer0(void) interrupt 1
 		if(g_timer_manage.timer0.call != H_NULL)
 		{
 			g_timer_manage.timer0.call();
-			wy_timer_close(_TIMER0);
+			
 		}else
 		{
 			
