@@ -13,6 +13,9 @@ sbit Led4 = P1^ 3;
 
 static char g_StartSonser = 0;
 
+#define SONNER_TRIGGER			(10)
+static char g_SonserSatausLow = 0;
+static char g_SonserStatusHi = 0;
 
 
 static void _InterruptOpen(void)
@@ -27,12 +30,25 @@ static void _InterruptClose(void)
 
 static void _Timer0Callback(void)
 {
-	if(!(SONSER_VDET&0x1))//传感器信号为高电平
+	if(!(SONSER_VDET&0x1))//传感器信号为低电平
 	{
 		//TODO:无电机转动，断开继电器停止向工控板供电
+		g_SonserSatausLow++;
+		g_SonserStatusHi = 0;
 		RELAY_CONTROL=0;
+		
+	}else if((SONSER_VDET&0x1))
+	{
+		g_SonserStatusHi++;
+		g_SonserSatausLow = 0;
+	}
+	
+	if((g_SonserStatusHi > SONNER_TRIGGER) || (g_SonserSatausLow > SONNER_TRIGGER))
+	{
 		wy_led_display(_LED_1, H_TRUE);
 		wy_timer_close(_TIMER0);
+		g_SonserStatusHi = 0;
+		g_SonserSatausLow = 0;
 	}
 }
 
@@ -62,17 +78,7 @@ void main()
 	//RELAY_CONTROL=1;
 	while(1)
 	{
-		/*
-		wy_delay(1000);
-		wy_led_display(_LED_1, H_TRUE);
-		wy_delay(1000);
-		wy_led_display(_LED_1, H_FAUSE);
-		continue;
-   */
 		
-		
-		
-
 		if(!(START_VDET&0x1))//检测开始信号后开始检测传感器信号
 		{
 			g_StartSonser = 1;
@@ -95,28 +101,6 @@ void main()
 }
 
 #else
-//Test Main function
-void main()
-{
-	//wy_wdg_start();
-	wy_led_display(_LED_1, H_TRUE);
-	//wy_led_display(_LED_1, H_TRUE);
-	//wy_led_display(_LED_2, H_TRUE);
-	//_InterruptOpen();
-	//wy_timer_open(_TIMER0,10000);
-	_LEDTest();
-	while(1)
-	{
-		
-		//wy_delay(1000);
-		
-		//Led1=1;
-		//wy_led_display(_LED_1, H_FAUSE);
-		//wy_delay(1000);
-		//wy_SysReset();
-		//wy_led_display(_LED_1, H_FAUSE);
-		//wy_led_display(_LED_2, H_FAUSE);
-	}
-}
+
 #endif
 

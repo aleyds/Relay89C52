@@ -1,7 +1,7 @@
 #ifndef __TIMER_H___
 #define __TIMER_H___
 typedef enum{
-	_TIMER0,
+	_TIMER0=0,
 	_TIMER1,
 	_TIMER2,
 }_TimerType_e;
