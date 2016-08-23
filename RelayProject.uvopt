@@ -43,7 +43,7 @@
         <PageWidth>120</PageWidth>
         <PageLength>65</PageLength>
         <TabStop>8</TabStop>
-        <ListingPath>.\Listing\</ListingPath>
+        <ListingPath>.\debug\Listing\</ListingPath>
       </OPTLEX>
       <ListingPage>
         <CreateCListing>1</CreateCListing>
@@ -191,12 +191,12 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>2</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>17</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>79</TopLine>
-      <CurrentLine>81</CurrentLine>
+      <CurrentLine>93</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -1703,9 +1703,9 @@
         </Doc>
         <Doc>
           <Name>.\main\main.c</Name>
-          <ColumnNumber>0</ColumnNumber>
+          <ColumnNumber>17</ColumnNumber>
           <TopLine>79</TopLine>
-          <CurrentLine>81</CurrentLine>
+          <CurrentLine>93</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>
